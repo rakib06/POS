@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+
+{% block body %}
+<br><br>
+<div class="button group">
+
+    <a href="{% url 'display_chair' %}"  class="btn btn-outline-primary" role="button">Chair</a>
+    <a href="{% url 'create_chair' %}" role="button" class="btn btn-outline-dark btn-sm">+ Add</a>
+
+    <a href="{% url 'display_sofa' %}" role="button" class="btn btn-outline-primary">Sofa</a>
+    <a role="button" class="btn btn-outline-dark btn-sm">+ Add</a>
+
+    <a href="{% url 'display_bed' %}" role="button" class="btn btn-outline-primary">Bed</a>
+    <a role="button" class="btn btn-outline-dark btn-sm">+ Add</a>
+
+
+
+</div>
+<br>
+<h4> You're viewing {{ headline }}</h4>
+<br>
+<table class="table table-hover">
+    <thead>
+    <th> No. </th>
+    <th> Model </th>
+    <th> Price  </th>
+    <th> Status</th>
+    <th> Issues </th>
+    <th colspan="2" style="text-align:center" > Action </th>
+
+    </thead>
+    <tbody>
+    {% for item in items %}
+        <tr>
+        <td>{{ item.pk }}</td>
+        <td>{{ item.type }}</td>
+        <td> {{ item.price }}</td>
+        <td>{{ item.status }}</td>
+        <td>{{ item.issues }}</td>
+        <td align="center">
+             <a href= "{% url 'edit_chair' item.pk %}" role="button" class="btn btn-outline-dark btn-sm">Edit</a>
+        </td>
+        <td align="center">
+             <a href= "{% url 'delete_chair' item.pk %}" role="button" class="btn btn-outline-danger btn-sm">Delete</a>
+        </td>
+
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
